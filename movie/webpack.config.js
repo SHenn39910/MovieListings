@@ -1,5 +1,6 @@
 const { Module } = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
@@ -7,7 +8,12 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  module: {
+  devServer: {
+      contenentBase: path.resolve(__dirname, "./src"),
+      historyApiFallback: true
+  },
+    entry: path.resolve(__dirname, "./src/index.js"),
+    module: {
     rules: [
       {
         test: "/\.js$/",
